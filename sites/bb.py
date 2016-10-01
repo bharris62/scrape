@@ -10,7 +10,8 @@ links = soup.find_all('a')
 
 gen = soup.find_all('article', {'class': 'product-layout'})
 
-
+num = 1
 for item in gen:
-    print(item.contents[1].find_all('div')[2])
-    break
+    print(num)
+    print(item.find_all('div', {'class': 'product-details'})[0].text)
+    num += 1
