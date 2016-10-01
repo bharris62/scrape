@@ -8,7 +8,9 @@ soup = BeautifulSoup(r.content, "html.parser")
 
 links = soup.find_all('a')
 
-gen = soup.find_all('article', {'class': 'store-layout-product-item'})
+gen = soup.find_all('article', {'class': 'product-layout'})
+
 
 for item in gen:
-    print(item.contents[1].find_all('a')[2])
+    print(item.contents[1].find_all('div')[2])
+    break
