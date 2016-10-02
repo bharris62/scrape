@@ -6,16 +6,29 @@ r = requests.get(url)
 
 soup = BeautifulSoup(r.content, "lxml")
 
-links = soup.find_all('a')
-
 gen = soup.find_all('article', {'class': 'product-layout'})
 
 for item in gen:
+    # Dealer Name
+    print('bodybuilding.com')
+
     # Gets the product name
     print(item.find_all('div', {'class': 'product-details'})[0].find_all('a')[0].text)
 
-    # TODO Get Product Link
+    # Get Product Link
+    href = item.find_all('h3')[0].find('a').get('href')
+    print('https://bodybuilding.com%s' %(href))
 
     # Get Product Price
-    print(item.find_all('li', {'itemprop': 'price'})[0].text)
+    price = item.find_all('li', {'itemprop': 'price'})[0].text
+    print(price)
+
+    # Per Serving
+    servings = item.find_all('li', {'class': 'product-spec'})[2].text[11:]
+
+    # Price per serving
+    print(format(float(price[1:])/int(servings), '.2f'))
+
+    # type of protein
+    print("Whey")
     break
