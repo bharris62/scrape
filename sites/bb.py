@@ -7,6 +7,7 @@ r = requests.get(url)
 soup = BeautifulSoup(r.content, "lxml")
 
 gen = soup.find_all('article', {'class': 'product-layout'})
+print(gen)
 
 for item in gen:
     # Dealer Name
@@ -31,4 +32,8 @@ for item in gen:
 
     # type of protein
     print("Whey")
+
+    # Product Image
+    image = item.find_all('img')[0].get('src')
+    print(image)
     break
