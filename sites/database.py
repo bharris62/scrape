@@ -3,9 +3,9 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime, Float, ForeignKey
-import config.py
+import config
 
-engine = create_engine(postgres_url)
+engine = create_engine(config.postgres_url)
 Session = sessionmaker(bind=engine)
 session = Session()
 Base = declarative_base()

@@ -1,1 +1,0 @@
-postgres_url ='postgresql://PW123@localhost:5432/supplements'
