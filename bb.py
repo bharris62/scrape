@@ -10,47 +10,44 @@ soup = BeautifulSoup(r.content, "lxml")
 
 gen = soup.find_all('article', {'class': 'product-layout'})
 
+
 for item in gen:
+    product = Product()
     # Dealer Name
-    product_dealer = 'bodybuilding.com'
-    product_dealer = Product(product_dealer=product_dealer)
-    session.add(product_dealer)
+    website = 'bodybuilding.com'
+    product.product_dealer = website
 
     # Gets the product name
-    product_name = item.find_all('div', {'class': 'product-details'})[0].find_all('a')[0].text
-    product_name = Product(product_name=product_name)
-    session.add(product_name)
+    prod = item.find_all('div', {'class': 'product-details'})[0].find_all('a')[0].text
+    product.product_name = prod
 
     # Get Product Link
     href = item.find_all('h3')[0].find('a').get('href')
-    product_link = 'https://bodybuilding.com%s' % href
-    product_link = Product(product_url=product_link)
-    session.add(product_link)
+    link = 'https://bodybuilding.com%s' % href
+    product.product_url = link
 
     # Get Product Price
     price = item.find_all('li', {'itemprop': 'price'})[0].text
-    product_price = price
-    product_price = Product(product_price=product_price)
-    session.add(product_price)
+    prod_price = price
+    product.product_price = prod_price
 
     # Per Serving
     servings = item.find_all('li', {'class': 'product-spec'})[2].text[11:]
     # Price per serving
-    product_price_per_serving = format(float(price[1:])/int(servings), '.2f')
-    product_price_per_serving = Product(product_price_per_serving=product_price_per_serving)
-    session.add(product_price_per_serving)
+    pps = format(float(price[1:])/int(servings), '.2f')
+    product.product_price_per_serving = pps
+
     # type of protein
-    product_type = "Whey"
-    product_type = Product(product_type=product_type)
-    session.add(product_type)
+    prod_type = "Whey"
+    product.product_type = prod_type
+
     # Product Image
     image = item.find_all('img')[0].get('src')
-    product_image = image
-    product_image = Product(product_image=product_image)
-    session.add(product_image)
+    prod_image = image
+    product.product_image = prod_image
 
+    session.add(product)
     session.commit()
-    break
 
 
 
