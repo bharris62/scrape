@@ -11,6 +11,7 @@ session = Session()
 Base = declarative_base()
 
 
+# Creates products table, holds information; will hold various products, from various websites
 class Product(Base):
     __tablename__ = 'products'
 

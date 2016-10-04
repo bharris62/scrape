@@ -15,7 +15,6 @@ for page in url:
     soup = BeautifulSoup(r.content, "lxml")
 
     gen = soup.find_all('article', {'class': 'product-layout'})
-    num += 1
     for item in gen:
         product = Product()
         # Dealer Name
@@ -54,6 +53,7 @@ for page in url:
         prod_image = image
         product.product_image = prod_image
 
+        # adds and commits each Product through each iteration.
         session.add(product)
         session.commit()
 
