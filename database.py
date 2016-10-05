@@ -23,6 +23,7 @@ class Product(Base):
     product_price_per_serving = Column(String)
     product_type = Column(String)
     product_image = Column(String)
-    start_time = Column(DateTime, default=datetime.utcnow)
+    product_description = Column(String)
+    last_update = Column(DateTime, default=datetime.utcnow)
 
 Base.metadata.create_all(engine)

@@ -3,9 +3,9 @@ from bs4 import BeautifulSoup
 from database import session, Product
 
 
-url = ['http://www.bodybuilding.com/store/protein-powder.html',
-       'http://www.bodybuilding.com/store/whey.html?pg=2',
-       'http://www.bodybuilding.com/store/whey.html?pg=3']
+url = ['http://www.bodybuilding.com/store/mic.html',
+       'http://www.bodybuilding.com/store/mic.html?pg=2',
+       'http://www.bodybuilding.com/store/mic.html?pg=3']
 
 for page in url:
 
