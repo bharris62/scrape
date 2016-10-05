@@ -53,6 +53,13 @@ for page in url:
         prod_image = image
         product.product_image = prod_image
 
+        try:
+            sale_item = item.find_all('div', {'class': 'violator'})[0].text[5:]
+            product.product_description = sale_item
+        except IndexError:
+            product.product_description = ''
+
+
         # adds and commits each Product through each iteration.
         session.add(product)
         session.commit()
