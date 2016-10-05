@@ -13,7 +13,6 @@ for page in url:
     soup = BeautifulSoup(r.content, "lxml")
 
     gen = soup.find_all('article', {'class': 'product-layout'})
-    num += 1
     for item in gen:
         product = Product()
         # Dealer Name
