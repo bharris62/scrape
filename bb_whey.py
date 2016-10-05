@@ -9,6 +9,7 @@ url = ['http://www.bodybuilding.com/store/protein-powder.html',
        'http://www.bodybuilding.com/store/whey.html?pg=4',
        'http://www.bodybuilding.com/store/whey.html?pg=5']
 
+rows_logged = 0
 for page in url:
 
     r = requests.get(page)
@@ -59,8 +60,11 @@ for page in url:
         except IndexError:
             product.product_description = ''
 
+        rows_logged += 1
+
 
         # adds and commits each Product through each iteration.
         session.add(product)
         session.commit()
 
+print("logged {} rows".format(rows_logged))

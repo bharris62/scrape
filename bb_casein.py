@@ -7,6 +7,7 @@ url = ['http://www.bodybuilding.com/store/mic.html',
        'http://www.bodybuilding.com/store/mic.html?pg=2',
        'http://www.bodybuilding.com/store/mic.html?pg=3']
 
+rows_logged = 0
 for page in url:
 
     r = requests.get(page)
@@ -61,4 +62,4 @@ for page in url:
         session.commit()
 
 
-
+print("logged {} rows".format(rows_logged))
