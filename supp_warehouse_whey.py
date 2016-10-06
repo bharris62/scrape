@@ -3,9 +3,9 @@ from bs4 import BeautifulSoup
 from database import session, Product
 
 
-url = ['http://www.bodybuilding.com/store/mic.html',
-       'http://www.bodybuilding.com/store/mic.html?pg=2',
-       'http://www.bodybuilding.com/store/mic.html?pg=3']
+url = ['http://www.supplementwarehouse.com/protein/whey-isolate-protein.html?p=1',
+       'http://www.supplementwarehouse.com/protein/whey-isolate-protein.html?p=2',
+       'http://www.supplementwarehouse.com/protein/whey-isolate-protein.html?p=3']
 
 rows_logged = 0
 for page in url:
@@ -15,7 +15,9 @@ for page in url:
 
     gen = soup.find_all('article', {'class': 'product-layout'})
     for item in gen:
+
         product = Product()
+
         # Dealer Name
         website = 'Supplement Warehouse'
         # product.product_dealer = website
