@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from database import session, Product
 
 
-url = ['http://www.vitaminshoppe.com/c/whey-protein-isolate/N-8eb']
+url = 'http://www.vitaminshoppe.com/c/whey-protein-isolate/N-8eb'
 
 rows_logged = 0
 for page in url:

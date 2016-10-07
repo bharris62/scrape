@@ -26,8 +26,11 @@ for item in gen:
 
     # TODO Get Product Price
     dollar = item.find_all('span', {'class': 'price-column'})[0].find('span', {'class': 'main-value'}).text
-    cent = item.find_all('span', {'class': 'price-column'})[0].find('span', {'class': 'sub'})
-    print('%s%s' %(dollar, cent))
+    cent = item.find_all('span', {'class': 'price-column'})[0].find_sibling()
+    print(cent)
+    # Note; having trouble getting last span, becausse they are named the same.
+
+
 
     # TODO Per Serving
 
