@@ -3,9 +3,7 @@ from bs4 import BeautifulSoup
 from database import session, Product
 
 
-url = ['http://www.supplementwarehouse.com/protein/whey-isolate-protein.html?p=1',
-       'http://www.supplementwarehouse.com/protein/whey-isolate-protein.html?p=2',
-       'http://www.supplementwarehouse.com/protein/whey-isolate-protein.html?p=3']
+url = ['http://www.vitaminshoppe.com/c/whey-protein-isolate/N-8eb']
 
 rows_logged = 0
 for page in url:
@@ -19,7 +17,7 @@ for page in url:
         product = Product()
 
         # Dealer Name
-        website = 'Supplement Warehouse'
+        website = 'Vitamin Shoppe'
         # product.product_dealer = website
 
         # TODO Get the product name

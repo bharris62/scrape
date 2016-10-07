@@ -5,9 +5,7 @@ from database import session, Product
 
 url = ['http://www.bodybuilding.com/store/protein-powder.html',
        'http://www.bodybuilding.com/store/whey.html?pg=2',
-       'http://www.bodybuilding.com/store/whey.html?pg=3',
-       'http://www.bodybuilding.com/store/whey.html?pg=4',
-       'http://www.bodybuilding.com/store/whey.html?pg=5']
+       'http://www.bodybuilding.com/store/whey.html?pg=3']
 
 rows_logged = 0
 for page in url:
