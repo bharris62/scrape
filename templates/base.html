@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Supps.io</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -22,15 +22,17 @@
         <th>Description</th>
     </tr>
   </thead>
-  <tbody>
+    <tbody>
+    {% for product in products %}
     <tr>
-      <th scope="row"><img src="{{ product_image }}" alt="{{ product_name }} height=30 width=30"></th>
-      <td>{{ product_name }}</td>
-      <td>{{ price_per_serving }}</td>
-      <td>{{ product_price }}</td>
-        <td>{{ product_type }}</td>
-        <td>{{ product_description }}</td>
+      <th scope="row"><img src="{{ product.product_image }}" alt="{{ product.product_name }} height=30 width=30"></th>
+      <td>{{ product.product_name }}</td>
+      <td>{{ product.product_price_per_serving }}</td>
+      <td>{{ product.product_price }}</td>
+        <td>{{ product.product_type }}</td>
+        <td>{{ product.product_description }}</td>
     </tr>
+    {% endfor %}
   </tbody>
 </table>
 </div>
