@@ -20,17 +20,19 @@
        <th>Price</th>
         <th>Type</th>
         <th>Description</th>
+        <th>Seller</th>
     </tr>
   </thead>
     <tbody>
     {% for product in products %}
     <tr>
-      <th scope="row"><img src="{{ product.product_image }}" alt="{{ product.product_name }} height=30 width=30"></th>
-      <td>{{ product.product_name }}</td>
+      <th scope="row"><a href="{{ product.product_url }}"><img src="{{ product.product_image }}" alt="{{ product.product_name }} height=30 width=30"></a></th>
+      <td><a href="{{ product.product_url }}">{{ product.product_name }}</a></td>
       <td>{{ product.product_price_per_serving }}</td>
       <td>{{ product.product_price }}</td>
         <td>{{ product.product_type }}</td>
         <td>{{ product.product_description }}</td>
+        <td>{{ product.product_dealer }}</td>
     </tr>
     {% endfor %}
   </tbody>
