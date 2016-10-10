@@ -2,10 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-
 url = 'http://www.vitaminshoppe.com/c/whey-protein-isolate/N-8eb'
-
-
 
 r = requests.get(url)
 soup = BeautifulSoup(r.content, "lxml")
@@ -27,8 +24,6 @@ for item in gen:
     # Get Product Price
     dollar = item.find_all('span', {'class': 'price-column'})[0].find('span', {'class': 'main-value'}).text
     cent = item.find_all('span', {'class': 'price-column'})[0].find_all('span', {'class': 'sub'})[1].text
-
-
 
     # TODO Per Serving
 
