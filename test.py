@@ -24,11 +24,9 @@ for item in gen:
     # print(item.find_all('img')[0].get('src'))
 
 
-    # TODO Get Product Price
+    # Get Product Price
     dollar = item.find_all('span', {'class': 'price-column'})[0].find('span', {'class': 'main-value'}).text
-    cent = item.find_all('span', {'class': 'price-column'})[0].find_sibling()
-    print(cent)
-    # Note; having trouble getting last span, becausse they are named the same.
+    cent = item.find_all('span', {'class': 'price-column'})[0].find_all('span', {'class': 'sub'})[1].text
 
 
 
