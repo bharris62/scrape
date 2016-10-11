@@ -22,16 +22,16 @@ for item in gen:
 
 
     # Get Product Price
-    dollar = item.find_all('span', {'class': 'price-column'})[0].find('span', {'class': 'main-value'}).text
-    cent = item.find_all('span', {'class': 'price-column'})[0].find_all('span', {'class': 'sub'})[1].text
+    # dollar = item.find_all('span', {'class': 'price-column'})[0].find('span', {'class': 'main-value'}).text
+    # cent = item.find_all('span', {'class': 'price-column'})[0].find_all('span', {'class': 'sub'})[1].text
 
     # TODO Per Serving
 
     # TODO Price per serving
+    pps = item.find_all('li', {'class': 'product-description'})[0].find('h5').text
+    print(pps)
 
     # type of protein
     prod_type = "Whey"
     # product.product_type = prod_type
 
-
-    break
