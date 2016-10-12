@@ -1,1 +1,1 @@
-web: gunicorn run:app -w 4 --log-file - --bind 0.0.0.0:$PORT
+web: gunicorn python run.py -w 4 --log-file - --bind 0.0.0.0:$PORT
