@@ -30,7 +30,6 @@ for item in gen:
     # TODO Price per serving
     pps = item.find_all('li', {'class': 'product-description'})[0].find('a')[1].get('href')
     url = 'vitaminshoppe.com' + pps
-    print(pps)
 
     # may need to access the url from above and get the information from the
     # main page for the product.
