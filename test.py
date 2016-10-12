@@ -20,23 +20,21 @@ for item in gen:
     # Product Image
     # print(item.find_all('img')[0].get('src'))
 
-
     # Get Product Price
     # dollar = item.find_all('span', {'class': 'price-column'})[0].find('span', {'class': 'main-value'}).text
     # cent = item.find_all('span', {'class': 'price-column'})[0].find_all('span', {'class': 'sub'})[1].text
-
-    # TODO Per Serving
-
-    # TODO Price per serving
-    pps = item.find_all('li', {'class': 'product-description'})[0].find('a')[1].get('href')
-    url = 'vitaminshoppe.com' + pps
-
-    # may need to access the url from above and get the information from the
-    # main page for the product.
-    print(pps)
 
     # type of protein
     prod_type = "Whey"
     # product.product_type = prod_type
 
-    break
+    # TODO Price per serving
+    pps = item.find_all('li', {'class': 'product-description'})[0].find('a').get('href')
+    url = 'http://vitaminshoppe.com%s' %pps
+
+    r = requests.get(url)
+    soup = BeautifulSoup(r.content, "lxml")
+
+    # very slow, but operable
+    price_per_serving = soup.find_all('p', {'class': 'mtop5'})[4].text[23:27]
+    print(price_per_serving)
