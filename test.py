@@ -2,42 +2,72 @@ import requests
 from bs4 import BeautifulSoup
 
 
-url = 'http://www.vitaminshoppe.com/c/whey-protein-isolate/N-8eb'
+urls = ['http://www.bodybuilding.com/store/mic.html',
+        'http://www.bodybuilding.com/store/mic.html?pg=2',
+        'http://www.bodybuilding.com/store/mic.html?pg=3']
 
-r = requests.get(url)
-soup = BeautifulSoup(r.content, "lxml")
+rows_logged = 0
+for page in urls:
 
-gen = soup.find_all('div', {'class': 'listing'})
+    r = requests.get(page)
 
-for item in gen:
-    # Get the product name
-    print(item.find_all('span', {'itemprop': 'name'})[0].text)
+    if r.status_code == 200:
+        soup = BeautifulSoup(r.content, "lxml")
 
-    # Get Product Link
-    url_ext = item.find_all('a', {'class': 'gray-link'})[0].get('href')
-    link = 'www.vitaminshoppe.com%s' %url_ext
+        gen = soup.find_all('article', {'class': 'product-layout'})
+        for item in gen:
 
-    # Product Image
-    print(item.find_all('img')[0].get('src'))
+            # Dealer Name
+            website = 'bodybuilding.com'
+            print(website)
 
-    # Get Product Price
-    dollar = item.find_all('span', {'class': 'price-column'})[0].find('span', {'class': 'main-value'}).text
-    cent = item.find_all('span', {'class': 'price-column'})[0].find_all('span', {'class': 'sub'})[1].text
-    print('{}{}'.format(dollar, cent))
+            # Gets the product name
+            prod = \
+                item.find_all('div', {'class': 'product-details'})[
+                    0].find_all('a')
+            if prod:
 
-    # type of protein
-    prod_type = "Whey"
-    print(prod_type)
-    # product.product_type = prod_type
+                print(prod[0].text)
 
-    # TODO Price per serving
-    pps = item.find_all('li', {'class': 'product-description'})[0].find('a').get('href')
-    url = 'http://vitaminshoppe.com%s' %pps
+                # Get Product Link
+                href = item.find_all('h3')[0].find('a').get('href')
+                link = 'https://bodybuilding.com%s' % href
+                print(link)
 
-    r = requests.get(url)
-    soup = BeautifulSoup(r.content, "lxml")
+                # Get Product Price
+                price = item.find_all('li', {'itemprop': 'price'})[0].text
+                prod_price = price
+                print(prod_price)
 
-    # very slow, but operable
-    price_per_serving = soup.find_all('p', {'class': 'mtop5'})[4].text[23:27]
+                # Per Serving
+                servings = item.find_all('li', {'class': 'product-spec'})[
+                               2].text[
+                           11:]
+                # Price per serving
+                try:
+                    pps = format(float(price[1:]) / int(servings), '.2f')
+                    print(pps)
+                except ValueError:
+                    print('N/A')
+
+                # type of protein
+                prod_type = "Casein"
+                print(prod_type)
+
+                # Product Image
+                image = item.find_all('img')[0].get('src')
+                prod_image = image
+                print(prod_image)
+
+                try:
+                    sale_item = item.find_all('div', {'class': 'violator'})[
+                                    0].text[
+                                5:]
+                    print(sale_item)
+                except IndexError:
+                    print('no sale')
 
 
+                rows_logged += 1
+
+print(rows_logged)
