@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-from database import session, Product
 
+from database import session, Product
 
 url = ['http://www.bodybuilding.com/store/mic.html',
        'http://www.bodybuilding.com/store/mic.html?pg=2',

@@ -1,7 +1,7 @@
-from flask import Flask, render_template, redirect
-from database import session
-from database import Product
+from flask import Flask, render_template
 
+from database import Product
+from database import session
 
 app = Flask(__name__)
 
