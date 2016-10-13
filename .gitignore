@@ -89,6 +89,7 @@ ENV/
 .ropeproject
 
 
-idea/
+/.idea/
 
 config.py
+/supps.db
