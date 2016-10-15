@@ -4,6 +4,8 @@ from flask import Flask, render_template
 
 from .extensions import db
 from .models import Product
+import config
+
 
 BASE_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), '..')
 
@@ -18,9 +20,7 @@ def create_app(package_name, settings_override=None):
     """
     default_settings = {
         'DEBUG': os.environ.get('FLASK_DEBUG', False),
-        'SQLALCHEMY_DATABASE_URI': os.environ.get('SQLALCHEMY_DATABASE_URI',
-                                                  'sqlite:///' + os.path.join(
-                                                      BASE_PATH, 'supps.db')),
+        'SQLALCHEMY_DATABASE_URI': os.environ.get(config.postgres_url),
         'SQLALCHEMY_TRACK_MODIFICATIONS': False
     }
 
