@@ -93,3 +93,5 @@ ENV/
 
 instance/config.py
 /supps.db
+
+test.py

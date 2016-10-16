@@ -35,9 +35,12 @@ for page in urls:
                 print(link)
 
                 # Get Product Price
-                price = item.find_all('li', {'itemprop': 'price'})[0].text
-                prod_price = price
-                print(prod_price)
+                try:
+                    price = item.find_all('li', {'itemprop': 'price'})[0].text
+                    prod_price = price
+                    print(prod_price)
+                except IndexError:
+                    print('N/A')
 
                 # Per Serving
                 servings = item.find_all('li', {'class': 'product-spec'})[
