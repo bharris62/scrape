@@ -91,5 +91,5 @@ ENV/
 
 /.idea/
 
-supps/config.py
+instance/config.py
 /supps.db

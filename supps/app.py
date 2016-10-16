@@ -2,9 +2,8 @@ import os
 
 from flask import Flask, render_template
 
-from .extensions import db
-from .models import Product
-import config
+from supps.extensions import db
+from supps.models import Product
 
 
 BASE_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), '..')
@@ -18,14 +17,14 @@ def create_app(package_name, settings_override=None):
     :param package_name: typically __name__ for the package_name
     :return: the application instance
     """
-    default_settings = {
-        'DEBUG': os.environ.get('FLASK_DEBUG', False),
-        'SQLALCHEMY_DATABASE_URI': os.environ.get(config.postgres_url),
-        'SQLALCHEMY_TRACK_MODIFICATIONS': False
-    }
+    # default_settings = {
+    #     'DEBUG': os.environ.get('FLASK_DEBUG', False),
+    #     'SQLALCHEMY_DATABASE_URI': os.environ.get('postgresql://BHarris:@localhost:5432/supplements'),
+    #     'SQLALCHEMY_TRACK_MODIFICATIONS': False
+    # }
 
-    app = Flask(__name__)
-    app.config.update(default_settings)
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_pyfile('config.py')
 
     if settings_override:
         app.config.from_object(settings_override)

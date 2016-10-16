@@ -38,13 +38,13 @@ def create_db():
 
 @app.cli.command()
 def run_scrapers():
-    from supps.tasks.bb_casein import scrape_bodybuilding_casein
+    # from supps.tasks.bb_casein import scrape_bodybuilding_casein
     from supps.tasks.bb_whey import scrape_bodybuilding_whey
-    from supps.tasks.vs_whey import scrape_vitamin_shoppe_whey
+    # from supps.tasks.vs_whey import scrape_vitamin_shoppe_whey
     click.echo('Running Scrapers!')
     # scrape_bodybuilding_casein()
     scrape_bodybuilding_whey()
-    scrape_vitamin_shoppe_whey()
+    # scrape_vitamin_shoppe_whey()
     click.echo('Scrapers Finished!')
 
     return
