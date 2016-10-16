@@ -39,10 +39,12 @@ def scrape_bodybuilding_casein():
                     product.product_url = link
 
                     # Get Product Price
-                    price = item.find_all('li', {'itemprop': 'price'})[0].text
-                    prod_price = price
-                    product.product_price = prod_price
-
+                    try:
+                        price = item.find_all('li', {'itemprop': 'price'})[0].text
+                        prod_price = price
+                        product.product_price = prod_price
+                    except IndexError:
+                        product.product_price = 'N/A'
                     # Per Serving
                     servings = item.find_all('li', {'class': 'product-spec'})[
                                    2].text[
@@ -73,6 +75,7 @@ def scrape_bodybuilding_casein():
 
                     db.session.add(product)
                     db.session.commit()
+                    rows_logged +=1
 
     print("logged {} rows".format(rows_logged))
     return
