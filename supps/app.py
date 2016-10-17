@@ -24,6 +24,7 @@ def create_app(package_name, settings_override=None):
     if settings_override:
         app.config.from_object(settings_override)
 
+
     # Init extensions
     db.init_app(app)
 
