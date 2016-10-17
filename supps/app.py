@@ -19,7 +19,7 @@ def create_app(package_name, settings_override=None):
     """
 
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_pyfile('config.py')
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
     if settings_override:
         app.config.from_object(settings_override)
