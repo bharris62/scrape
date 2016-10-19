@@ -44,7 +44,7 @@ def run_scrapers():
     from supps.tasks.amazon_whey import scrape_whey_amazon
     click.echo('Running Scrapers!')
     #scrape_bodybuilding_casein()
-    #scrape_bodybuilding_whey()
+    scrape_bodybuilding_whey()
     #scrape_vitamin_shoppe_whey()
     scrape_whey_amazon()
     click.echo('Scrapers Finished!')
