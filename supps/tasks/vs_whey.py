@@ -65,5 +65,4 @@ def scrape_vitamin_shoppe_whey():
 
         rows_logged += 1
 
-
     print("logged {} rows".format(rows_logged))
