@@ -24,7 +24,7 @@ def create_app(package_name, settings_override=None):
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://BHarris:@localhost:5432/supplements'
 
     # For Heroku
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get['DATABASE_URL']
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
     if settings_override:
         app.config.from_object(settings_override)
 
