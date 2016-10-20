@@ -5,13 +5,13 @@ from amazon.api import AmazonAPI
 
 
 def scrape_whey_amazon():
-    product = Product()
 
-    amazon = AmazonAPI(os.environ['AMAZON_ACCESS_KEY'], os.environ['AMAZON_SECRET_KEY'], 'thenooacc-20')
+    amazon = AmazonAPI('AKIAIJHUEBHIPCLQ7KLQ', 'xs7YIeB4oR6/QvXY7DCbvFhCxbGIJx4EeUqMEwMy', 'thenooacc-20')
 
     prod = amazon.search(Keywords='whey', SearchIndex='All')
     rows_logged = 0
     for i in prod:
+        product = Product()
         # print(dir(i))
 
         # description of product / Product Name
@@ -42,8 +42,7 @@ def scrape_whey_amazon():
 
         prod_description = ''
         product.product_description = prod_description
-
-        count += 1
+        rows_logged += 1
 
         db.session.add(product)
         db.session.commit()
