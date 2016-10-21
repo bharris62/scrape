@@ -37,7 +37,7 @@ def create_app(package_name, settings_override=None):
     @app.route("/")
     def home():
         products = db.session.query(Product).all()
-        return render_template('base.html',
+        return render_template('template.html',
                                products=products)
 
     return app

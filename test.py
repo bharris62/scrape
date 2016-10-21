@@ -2,12 +2,9 @@ import os
 from amazon.api import AmazonAPI
 
 
-key = os.environ['AMAZON_ACCESS_KEY']
-secret = os.environ['AMAZON_SECRET_KEY']
+amazon = AmazonAPI('AKIAIJHUEBHIPCLQ7KLQ', 'xs7YIeB4oR6/QvXY7DCbvFhCxbGIJx4EeUqMEwMy', 'thenooacc-20')
 
-amazon = AmazonAPI(key, secret, 'thenooacc-20')
-
-product = amazon.search(Keywords='whey', SearchIndex='All')
+product = amazon.search(Keywords='preworkout', SearchIndex='All')
 
 count=0
 for i in product:
