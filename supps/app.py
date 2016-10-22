@@ -36,7 +36,7 @@ def create_app(package_name, settings_override=None):
     # http://flask.pocoo.org/docs/0.11/blueprints/#blueprints
     @app.route("/")
     def home():
-        products = db.session.query(Product).all()
+        products = db.session.query(Product).order_by(Product.product_price_per_serving)
         return render_template('template.html',
                                products=products)
 
