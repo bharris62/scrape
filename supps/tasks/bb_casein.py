@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 
 from ..extensions import db
 from ..models import Product
@@ -30,7 +31,7 @@ def scrape_bodybuilding_casein():
                     item.find_all('div', {'class': 'product-details'})[
                         0].find_all('a')
                 if prod:
-
+                    prod_desc = prod[0].text
                     product.product_name = prod[0].text
                     try:
                         product.product_manufacturer = prod[0].text.split()[0]
@@ -55,8 +56,23 @@ def scrape_bodybuilding_casein():
                                11:]
                     # Price per serving
                     try:
-                        pps = format(float(price[1:]) / int(servings), '.2f')
+                        prod_weight = re.findall(r"[-+]?\d*\.\d+|\d+", prod_desc)[-1]
+                        try:
+                            price = item.find_all('li', {'itemprop': 'price'})[0].text
+                        except:
+                            price = 1
+
+                        if float(prod_weight) > 11:
+                            pps = 999
+                        else:
+
+                            try:
+                                pps = format(float(price[1:]) / float(prod_weight), '.2f')
+                            except TypeError:
+                                pps = 999
+
                         product.product_price_per_serving = pps
+
                     except ValueError:
                         product.product_price_per_serving = 'N/A'
 

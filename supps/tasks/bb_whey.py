@@ -25,13 +25,15 @@ def scrape_bodybuilding_whey():
 
             # Gets the product name
             prod = \
-            item.find_all('div', {'class': 'product-details'})[0].find_all('a')[
-                0].text
-            product.product_name = prod
-            try:
-                product.product_manufacturer = prod[0].text.split()[0]
-            except:
-                product.product_manufacturer = ':('
+                item.find_all('div', {'class': 'product-details'})[
+                    0].find_all('a')
+            if prod:
+
+                product.product_name = prod[0].text
+                try:
+                    product.product_manufacturer = prod[0].text.split()[0]
+                except:
+                    product.product_manufacturer = ':('
 
             # Get Product Link
             href = item.find_all('h3')[0].find('a').get('href')

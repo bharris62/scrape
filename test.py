@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 
 
 urls = ['http://www.bodybuilding.com/store/mic.html',
@@ -23,9 +24,24 @@ for page in urls:
             if prod:
 
                 product_name = prod[0].text
-                product_manufacturer = prod[0].text.split()[0]
 
-                print(product_name)
-                print(product_manufacturer)
+                prod_weight = re.findall(r"[-+]?\d*\.\d+|\d+", product_name)[-1]
+                try:
+                    price = item.find_all('li', {'itemprop': 'price'})[0].text
+                except:
+                    price = 1
 
-                break
+                if float(prod_weight) > 11:
+                    pps = 999
+                else:
+
+                    try:
+                        pps = format(float(price[1:]) / float(prod_weight), '.2f')
+                    except TypeError:
+                        pps = 999
+
+                print(pps)
+
+
+
+
