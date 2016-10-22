@@ -12,7 +12,9 @@ def scrape_whey_amazon():
     rows_logged = 0
     for i in prod:
         product = Product()
-        # print(dir(i))
+        # product manufacturer
+        prod_manufacturerer = i.publisher
+        product.product_manufacturer = prod_manufacturerer
 
         # description of product / Product Name
         prod_name = i.title

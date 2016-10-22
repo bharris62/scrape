@@ -1,37 +1,31 @@
-import os
-from amazon.api import AmazonAPI
+import requests
+from bs4 import BeautifulSoup
 
 
-amazon = AmazonAPI('AKIAIJHUEBHIPCLQ7KLQ', 'xs7YIeB4oR6/QvXY7DCbvFhCxbGIJx4EeUqMEwMy', 'thenooacc-20')
+urls = ['http://www.bodybuilding.com/store/mic.html',
+        'http://www.bodybuilding.com/store/mic.html?pg=2',
+        'http://www.bodybuilding.com/store/mic.html?pg=3']
 
-product = amazon.search(Keywords='preworkout', SearchIndex='All')
+for page in urls:
 
-count=0
-for i in product:
-    # print(dir(i))
+    r = requests.get(page)
 
-    # description of product / Product Name
-    print(i.title)
+    if r.status_code == 200:
+        soup = BeautifulSoup(r.content, "lxml")
 
-    # Price of Product
-    print(i.price_and_currency[0])
+        gen = soup.find_all('article', {'class': 'product-layout'})
+        for item in gen:
 
-    # Image of product
-    print(i.medium_image_url)
+            # Gets the product name
+            prod = \
+                item.find_all('div', {'class': 'product-details'})[
+                    0].find_all('a')
+            if prod:
 
-    # offer url
-    print(i.offer_url)
+                product_name = prod[0].text
+                product_manufacturer = prod[0].text.split()[0]
 
-    # price per serving
-    pps = 'currently unavail'
+                print(product_name)
+                print(product_manufacturer)
 
-    product_dealer = 'Amazon'
-
-    product_type = 'Whey'
-
-    product_description = ''
-
-    count += 1
-
-print(count)
-
+                break

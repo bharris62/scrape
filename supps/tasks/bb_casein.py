@@ -32,6 +32,10 @@ def scrape_bodybuilding_casein():
                 if prod:
 
                     product.product_name = prod[0].text
+                    try:
+                        product.product_manufacturer = prod[0].text.split()[0]
+                    except:
+                        product.product_manufacturer = ':('
 
                     # Get Product Link
                     href = item.find_all('h3')[0].find('a').get('href')

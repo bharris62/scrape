@@ -15,7 +15,6 @@ def scrape_vitamin_shoppe_whey():
 
     gen = soup.find_all('div', {'class': 'listing'})
 
-
     for item in gen:
 
         product = Product()
@@ -27,6 +26,10 @@ def scrape_vitamin_shoppe_whey():
         # Get the product name
         product_name = item.find_all('span', {'itemprop': 'name'})[0].text
         product.product_name = product_name
+
+        # Get product manufacturer
+        prod_manufacturer = item.find_all('span', {'itemprop': 'brand'})[0].text
+        product.product_manufacturer = prod_manufacturer.split()[0]
 
         # Get Product Link
         url_ext = item.find_all('a', {'class': 'gray-link'})[0].get('href')
