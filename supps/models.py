@@ -12,6 +12,7 @@ class Product(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     product_dealer = db.Column(db.String)
+    product_manufacturer = db.Column(db.String)
     product_name = db.Column(db.String)
     product_url = db.Column(db.String)
     product_price = db.Column(db.String)
