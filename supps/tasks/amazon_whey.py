@@ -2,6 +2,7 @@ import os
 from ..extensions import db
 from ..models import Product
 from amazon.api import AmazonAPI
+import re
 
 
 def scrape_whey_amazon():
@@ -32,10 +33,6 @@ def scrape_whey_amazon():
         url = i.offer_url
         product.product_url = url
 
-        # price per serving
-        pps = 'currently unavail'
-        product.product_price_per_serving = pps
-
         website = 'Amazon'
         product.product_dealer = website
 
@@ -44,8 +41,28 @@ def scrape_whey_amazon():
 
         prod_description = ''
         product.product_description = prod_description
-        rows_logged += 1
 
+
+        try:
+            try:
+                prod_weight = re.findall(r"[-+]?\d*\.\d+|\d+", prod_name)[-1]
+            except IndexError:
+                prod_weight = 1
+            if float(prod_weight) > 11:
+                pps = 999
+            else:
+                try:
+                    pps = format(float(prod_price) / float(prod_weight), '.2f')
+                except TypeError:
+                    pps = 999
+
+            product.product_price_per_serving = pps
+
+        except ValueError:
+            product.product_price_per_serving = pps
+
+
+        rows_logged += 1
         db.session.add(product)
         db.session.commit()
 
