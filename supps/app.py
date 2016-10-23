@@ -21,11 +21,11 @@ def create_app(package_name, settings_override=None):
     app = Flask(__name__, instance_relative_config=True)
 
     # For local
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://BHarris:@localhost:5432/supplements'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://BHarris:@localhost:5432/supplements'
 
     # For Heroku
 
-    # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
     if settings_override:
         app.config.from_object(settings_override)
