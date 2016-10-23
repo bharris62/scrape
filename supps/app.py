@@ -54,4 +54,10 @@ def create_app(package_name, settings_override=None):
         return render_template('template.html',
                                products=products)
 
+    @app.route("/preworkout")
+    def preworkout():
+        products = db.session.query(Product).filter(Product.product_type == 'Pre-Workout').order_by(
+            Product.product_price_per_serving)
+        return render_template('template.html',
+                               products=products)
     return app
