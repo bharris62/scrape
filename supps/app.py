@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask, render_template
+from datetime import datetime, timedelta
 
 from supps.extensions import db
 from supps.models import Product
@@ -38,26 +39,25 @@ def create_app(package_name, settings_override=None):
     # http://flask.pocoo.org/docs/0.11/blueprints/#blueprints
     @app.route("/")
     def home():
-        products = db.session.query(Product).order_by(Product.product_price_per_serving)
+        products = db.session.query(Product).order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=1)))
         return render_template('template.html',
                                products=products)
 
     @app.route("/whey")
     def whey():
-        products = db.session.query(Product).filter(Product.product_type == 'Whey').order_by(Product.product_price_per_serving)
+        products = db.session.query(Product).filter(Product.product_type == 'Whey').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=1)))
         return render_template('template.html',
                                products=products)
 
     @app.route("/casein")
     def casein():
-        products = db.session.query(Product).filter(Product.product_type == 'Casein').order_by(Product.product_price_per_serving)
+        products = db.session.query(Product).filter(Product.product_type == 'Casein').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=1)))
         return render_template('template.html',
                                products=products)
 
     @app.route("/preworkout")
     def preworkout():
-        products = db.session.query(Product).filter(Product.product_type == 'Pre-Workout').order_by(
-            Product.product_price_per_serving)
+        products = db.session.query(Product).filter(Product.product_type == 'Pre-Workout').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=1)))
         return render_template('template.html',
                                products=products)
     return app
