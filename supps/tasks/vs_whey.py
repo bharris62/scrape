@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 
 from supps.models import Product
 from ..extensions import db
@@ -47,16 +48,23 @@ def scrape_vitamin_shoppe_whey():
         product.product_image = image
 
         # Price per serving
-        pps = item.find_all('li', {'class': 'product-description'})[0].find('a').get('href')
-        url = 'http://vitaminshoppe.com%s' % pps
-        product.product_url = url
+        try:
+            prod_weight = re.findall(r"[-+]?\d*\.\d+|\d+", product_name)[-1]
+            prod_weight = float(prod_weight)
+            product_price = float(product_price)
 
-        r = requests.get(url)
-        soup = BeautifulSoup(r.content, "lxml")
+            if float(prod_weight) > 11:
+                pps = 999
+            else:
 
-        # very slow, but operable
-        price_per_serving = soup.find_all('p', {'class': 'mtop5'})[4].text[23:27]
-        product.product_price_per_serving = price_per_serving
+                try:
+                    pps = (format(product_price / prod_weight, '.2f'))
+                except:
+                    pps = 999
+        except ValueError:
+            pps = 999
+
+        product.product_price_per_serving = pps
 
         # type of protein
         prod_type = "Whey"

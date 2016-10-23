@@ -45,8 +45,8 @@ def run_scrapers():
     click.echo('Running Scrapers!')
     # scrape_bodybuilding_casein()
     # scrape_bodybuilding_whey()
-    # scrape_vitamin_shoppe_whey()
-    scrape_whey_amazon()
+    scrape_vitamin_shoppe_whey()
+    #scrape_whey_amazon()
     click.echo('Scrapers Finished!')
 
     return
