@@ -34,7 +34,7 @@ def scrape_vitamin_shoppe_preworkout():
 
         # Get Product Link
         url_ext = item.find_all('a', {'class': 'gray-link'})[0].get('href')
-        link = 'www.vitaminshoppe.com%s' % url_ext
+        link = 'https://www.vitaminshoppe.com%s' % url_ext
         product.product_url = link
 
         # Get Product Price
@@ -69,7 +69,6 @@ def scrape_vitamin_shoppe_preworkout():
         # type of protein
         prod_type = "Pre-Workout"
         product.product_type = prod_type
-
 
         db.session.add(product)
         db.session.commit()

@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from datetime import datetime, timedelta
 
 from supps.extensions import db
@@ -60,4 +60,10 @@ def create_app(package_name, settings_override=None):
         products = db.session.query(Product).filter(Product.product_type == 'Pre-Workout').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('template.html',
                                products=products)
+
+    @app.route('/<path:path>')
+    def handle_any_path(path):
+        return redirect("<path:path>", code=302)
+
     return app
+
