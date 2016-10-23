@@ -6,7 +6,7 @@ from supps.models import Product
 from ..extensions import db
 
 
-def scrape_bodybuilding_whey():
+def scrape_bodybuilding_preworkout():
     url = ['http://www.bodybuilding.com/store/goalpreworkout.htm?pg=1',
            'http://www.bodybuilding.com/store/goalpreworkout.htm?pg=2',
            'http://www.bodybuilding.com/store/goalpreworkout.htm?pg=3']
@@ -57,14 +57,14 @@ def scrape_bodybuilding_whey():
                 except:
                     price = 1
 
-                if float(prod_weight) > 11:
-                    pps = 999
+                if float(prod_weight) > 100:
+                    pps = 1
                 else:
 
                     try:
                         pps = format(float(price[1:]) / float(prod_weight), '.2f')
                     except TypeError:
-                        pps = 999
+                        pps = 1
 
                 product.product_price_per_serving = pps
 
@@ -72,7 +72,7 @@ def scrape_bodybuilding_whey():
                 product.product_price_per_serving = 'N/A'
 
             # type of protein
-            prod_type = "Whey"
+            prod_type = "Pre-Workout"
             product.product_type = prod_type
 
             # Product Image
