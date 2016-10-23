@@ -4,7 +4,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 sched = BlockingScheduler()
 
 
-@sched.scheduled_job('interval', minutes=360)
+@sched.scheduled_job('interval', minutes=5)
 def timed_job():
     print('cron started')
     run_scrapers()
