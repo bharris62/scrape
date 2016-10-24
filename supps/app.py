@@ -61,9 +61,5 @@ def create_app(package_name, settings_override=None):
         return render_template('template.html',
                                products=products)
 
-    @app.route('/<path:path>')
-    def handle_any_path(path):
-        return redirect("<path:path>", code=302)
-
     return app
 
