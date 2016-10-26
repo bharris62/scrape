@@ -6,10 +6,9 @@ from supps.models import Product
 from ..extensions import db
 
 
-def scrape_bodybuilding_preworkout():
-    url = ['http://www.bodybuilding.com/store/goalpreworkout.htm?pg=1',
-           'http://www.bodybuilding.com/store/goalpreworkout.htm?pg=2',
-           'http://www.bodybuilding.com/store/goalpreworkout.htm?pg=3']
+def scrape_bodybuilding_vitamin():
+    url = ['http://www.bodybuilding.com/store/multi.html',
+           'http://www.bodybuilding.com/store/multi.html?pg=2']
 
     rows_logged = 0
     for page in url:
@@ -72,7 +71,7 @@ def scrape_bodybuilding_preworkout():
                 product.product_price_per_serving = 'N/A'
 
             # type of protein
-            prod_type = "Pre-Workout"
+            prod_type = "Vitamin"
             product.product_type = prod_type
 
             # Product Image
