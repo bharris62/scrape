@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-url = 'https://www.a1supplements.com/sports-nutrition/pre-workout-supplements'
+url = 'https://www.a1supplements.com/vitamins-and-minerals/multi-vitamins'
 
 r = requests.get(url)
 soup = BeautifulSoup(r.content, "lxml")
