@@ -50,8 +50,15 @@ def scrape_a1_vitamin():
         r = requests.get(href)
         soup = BeautifulSoup(r.content, "lxml")
 
-        servings = soup.find_all('span', {'class': 'size-name'})[0].text.split()[0]
-        product.product_price_per_serving = servings
+        try:
+            servings = soup.find_all('span', {'class': 'size-name'})[0].text.split()[0]
+            if float(servings) > 200:
+                product.product_price_per_serving = 999
+            else:
+                pps = format(float(price[1:]) / float(servings), '.2f')
+                product.product_price_per_serving = pps
+        except IndexError:
+            product.product_price_per_serving = 999
 
         rows_logged += 1
         db.session.add(product)

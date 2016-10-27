@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-url = 'https://www.a1supplements.com/vitamins-and-minerals/multi-vitamins'
+url = 'https://www.a1supplements.com/protein-powder/whey-protein-powder'
 
 r = requests.get(url)
 soup = BeautifulSoup(r.content, "lxml")
@@ -19,7 +19,7 @@ for item in gen:
     # print(name)
 
     manufacturer = item.find_all('h2', {'class': 'product-name'})[0].text.strip().split()[0]
-    print(manufacturer)
+    # print(manufacturer)
 
     # Get Product Link
     href = item.find_all('a')[0].get('href')
@@ -45,6 +45,9 @@ for item in gen:
     soup = BeautifulSoup(r.content, "lxml")
 
     servings = soup.find_all('span', {'class': 'size-name'})[0].text.split()[0]
-    # print(servings)
+    print(servings)
+    print(price)
 
+    pps = format(float(price[1:]) / float(servings), '.2f')
+    print(pps)
 

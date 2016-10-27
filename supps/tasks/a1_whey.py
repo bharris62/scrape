@@ -4,8 +4,8 @@ from supps.models import Product
 from ..extensions import db
 
 
-def scrape_a1_preworkout():
-    url = 'https://www.a1supplements.com/sports-nutrition/pre-workout-supplements'
+def scrape_a1_whey():
+    url = 'https://www.a1supplements.com/protein-powder/whey-protein-powder'
 
     r = requests.get(url)
     soup = BeautifulSoup(r.content, "lxml")
@@ -35,7 +35,7 @@ def scrape_a1_preworkout():
         product.product_price = price
 
         # type of protein
-        prod_type = "Pre-Workout"
+        prod_type = "Whey"
         product.product_type = prod_type
 
         # Product Image
@@ -52,14 +52,11 @@ def scrape_a1_preworkout():
 
         try:
             servings = soup.find_all('span', {'class': 'size-name'})[0].text.split()[0]
-            try:
-                if float(servings) > 70:
-                    product.product_price_per_serving = 999
-                else:
-                    pps = format(float(price[1:]) / float(servings), '.2f')
-                    product.product_price_per_serving = pps
-            except ValueError:
+            if float(servings) > 10 or float(price[1:]) < 12:
                 product.product_price_per_serving = 999
+            else:
+                pps = format(float(price[1:]) / float(servings), '.2f')
+                product.product_price_per_serving = pps
         except IndexError:
             product.product_price_per_serving = 999
 

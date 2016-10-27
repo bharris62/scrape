@@ -8,8 +8,7 @@ from ..extensions import db
 
 def scrape_bodybuilding_whey():
     url = ['http://www.bodybuilding.com/store/protein-powder.html',
-           'http://www.bodybuilding.com/store/whey.html?pg=2',
-           'http://www.bodybuilding.com/store/whey.html?pg=3']
+           'http://www.bodybuilding.com/store/whey.html?pg=2']
 
     rows_logged = 0
     for page in url:
