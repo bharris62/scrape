@@ -1,9 +1,50 @@
-from amazon.api import AmazonAPI
+import requests
+from bs4 import BeautifulSoup
 
 
-amazon = AmazonAPI('AKIAJ5ZUX3EZNSGONTQQ', 'p0mqBPGq+pD61TI4pILqza4F2o8SskZbLEeg4uZm', 'supps07-20')
+url = 'https://www.a1supplements.com/sports-nutrition/pre-workout-supplements'
 
-prod = amazon.search(Keywords='multivitamin', SearchIndex='All')
+r = requests.get(url)
+soup = BeautifulSoup(r.content, "lxml")
 
-for i in prod:
-    print(i.title)
+gen = soup.find_all('li', {'class': 'item'})
+
+for item in gen:
+
+    # Dealer Name
+    website = 'A1 Supplements'
+
+    # Gets the product name
+    name = item.find_all('h2', {'class': 'product-name'})[0].text.strip()
+    # print(name)
+
+    manufacturer = item.find_all('h2', {'class': 'product-name'})[0].text.strip().split()[0]
+    print(manufacturer)
+
+    # Get Product Link
+    href = item.find_all('a')[0].get('href')
+    # print(href)
+
+    # Get Product Price
+    price = item.find_all('p', {'class': 'special-price'})[0].text.strip()
+    # print(price)
+
+    # type of protein
+    prod_type = "Pre-Workout"
+
+    # Product Image
+    image = item.find_all('img')[0].get('data-src')
+    # print(image)
+
+    # product promos
+    promo = item.find_all('div', {'class': 'promo-text'})[0].text.strip()
+    # print(promo)
+
+    # Per Serving
+    r = requests.get(href)
+    soup = BeautifulSoup(r.content, "lxml")
+
+    servings = soup.find_all('span', {'class': 'size-name'})[0].text.split()[0]
+    # print(servings)
+
+

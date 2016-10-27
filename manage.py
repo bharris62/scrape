@@ -48,17 +48,19 @@ def run_scrapers():
     from supps.tasks.vs_vitamin import scrape_vitamin_shoppe_vitamin
     from supps.tasks.bb_vitamin import scrape_bodybuilding_vitamin
     from supps.tasks.amazon_vitamin import scrape_vitamin_amazon
+    from supps.tasks.a1_preworkout import scrape_a1_preworkout
     click.echo('Running Scrapers!')
-    scrape_bodybuilding_casein()
-    scrape_bodybuilding_whey()
-    scrape_vitamin_shoppe_whey()
-    scrape_whey_amazon()
-    scrape_bodybuilding_preworkout()
-    scrape_preworkout_amazon()
-    scrape_vitamin_shoppe_preworkout()
-    scrape_vitamin_shoppe_vitamin()
-    scrape_bodybuilding_vitamin()
-    scrape_vitamin_amazon()
+    # scrape_bodybuilding_casein()
+    # scrape_bodybuilding_whey()
+    # scrape_vitamin_shoppe_whey()
+    # scrape_whey_amazon()
+    # scrape_bodybuilding_preworkout()
+    # scrape_preworkout_amazon()
+    # scrape_vitamin_shoppe_preworkout()
+    # scrape_vitamin_shoppe_vitamin()
+    # scrape_bodybuilding_vitamin()
+    # scrape_vitamin_amazon()
+    scrape_a1_preworkout()
     click.echo('Scrapers Finished!')
 
     return
