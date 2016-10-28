@@ -16,6 +16,8 @@
     <!--external css-->
     <link href="static/font-awesome/css/font-awesome.css" rel="stylesheet" />
       <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.jqueryui.min.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.dataTables.min.css">
 
     <!-- Custom styles for this template -->
     <link href="static/css/style.css" rel="stylesheet">
@@ -130,18 +132,18 @@
             <h6 class="text-center">-supps.io</h6>
           	<div class="row mt">
           		<div class="col-lg-12">
-          		 <table id="myTable"class="table table-hover">
+          		 <table id="myTable"class="display responsive" width="100%">
                  <p6 style="font-style:italic;">click on the heading to sort; click link to go to dealer site to buy</p6>
                       <thead>
                         <tr>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Price Per Pound</th>
-                            <th>Price</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                            <th>Manufacturer</th>
-                            <th>Seller</th>
+                            <th class="all">Image</th>
+                            <th class="all">Name</th>
+                            <th class="all">Price Per Pound</th>
+                            <th class="desktop">Price</th>
+                            <th class="desktop">Type</th>
+                            <th class="desktop">Description</th>
+                            <th class="desktop">Manufacturer</th>
+                            <th class="desktop">Seller</th>
                         </tr>
                       </thead>
                         <tbody>
