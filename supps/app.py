@@ -41,29 +41,34 @@ def create_app(package_name, settings_override=None):
     def home():
         products = db.session.query(Product).order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('template.html',
-                               products=products)
+                               products=products,
+                               type_product = 'All Products')
 
     @app.route("/whey")
     def whey():
         products = db.session.query(Product).filter(Product.product_type == 'Whey').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('template.html',
-                               products=products)
+                               products=products,
+                               type_product='Whey')
 
     @app.route("/casein")
     def casein():
         products = db.session.query(Product).filter(Product.product_type == 'Casein').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('template.html',
-                               products=products)
+                               products=products,
+                               type_product='Casein')
 
     @app.route("/preworkout")
     def preworkout():
         products = db.session.query(Product).filter(Product.product_type == 'Pre-Workout').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('template.html',
-                               products=products)
+                               products=products,
+                               type_product='Pre Workout')
 
     @app.route("/vitamin")
     def vitamin():
         products = db.session.query(Product).filter(Product.product_type == 'Vitamin').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('template.html',
-                               products=products)
+                               products=products,
+                               type_product='Vitamins')
     return app
