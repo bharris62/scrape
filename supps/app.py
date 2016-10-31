@@ -40,7 +40,7 @@ def create_app(package_name, settings_override=None):
     @app.route("/")
     def home():
         products = db.session.query(Product).order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
-        return render_template('template.html',
+        return render_template('coming_soon.html',
                                products=products,
                                type_product = 'All Products')
 
