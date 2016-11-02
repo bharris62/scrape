@@ -42,18 +42,19 @@ def create_app(package_name, settings_override=None):
         products = db.session.query(Product).order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('base.html',
                                products=products,
-                               type_product = 'All Products')
+                               is_active = 'active',
+                               type_product='All Products')
 
     @app.route("/whey")
     def whey():
-        products = db.session.query(Product).filter(Product.product_type == 'Whey').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
+        products = db.session.query(Product).filter(Product.product_type == 'Protein').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('base.html',
                                products=products,
                                type_product='Whey')
 
     @app.route("/casein")
     def casein():
-        products = db.session.query(Product).filter(Product.product_type == 'Casein').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
+        products = db.session.query(Product).order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('base.html',
                                products=products,
                                type_product='Casein')
@@ -63,6 +64,7 @@ def create_app(package_name, settings_override=None):
         products = db.session.query(Product).filter(Product.product_type == 'Pre-Workout').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('base.html',
                                products=products,
+                               is_active='active',
                                type_product='Pre Workout')
 
     @app.route("/vitamin")
@@ -77,4 +79,9 @@ def create_app(package_name, settings_override=None):
         products = db.session.query(Product).order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('base.html',
                                products=products)
+
+    @app.route("/pages/<page>")
+    def page(page):
+        page = page +'.html'
+        return render_template(page)
     return app

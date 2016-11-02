@@ -71,7 +71,7 @@ def scrape_bodybuilding_whey():
                 product.product_price_per_serving = 'N/A'
 
             # type of protein
-            prod_type = "Whey"
+            prod_type = "Protein"
             product.product_type = prod_type
 
             # Product Image

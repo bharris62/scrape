@@ -77,7 +77,7 @@ def scrape_bodybuilding_casein():
                         product.product_price_per_serving = 'N/A'
 
                     # type of protein
-                    prod_type = "Casein"
+                    prod_type = "Protein"
                     product.product_type = prod_type
 
                     # Product Image

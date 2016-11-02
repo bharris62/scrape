@@ -35,7 +35,7 @@ def scrape_a1_whey():
         product.product_price = price
 
         # type of protein
-        prod_type = "Whey"
+        prod_type = "Protein"
         product.product_type = prod_type
 
         # Product Image

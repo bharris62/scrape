@@ -67,7 +67,7 @@ def scrape_vitamin_shoppe_whey():
         product.product_price_per_serving = pps
 
         # type of protein
-        prod_type = "Whey"
+        prod_type = "Protein"
         product.product_type = prod_type
 
 

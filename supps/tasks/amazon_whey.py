@@ -35,7 +35,7 @@ def scrape_whey_amazon():
         website = 'Amazon'
         product.product_dealer = website
 
-        prod_type = 'Whey'
+        prod_type = 'Protein'
         product.product_type = prod_type
 
         prod_description = ''
