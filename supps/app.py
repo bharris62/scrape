@@ -39,11 +39,11 @@ def create_app(package_name, settings_override=None):
     # http://flask.pocoo.org/docs/0.11/blueprints/#blueprints
     @app.route("/")
     def home():
-        products = db.session.query(Product).order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
+        products = db.session.query(Product).filter(Product.product_type == 'Protein').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3))).limit(10)
         return render_template('base.html',
                                products=products,
                                is_active = 'active',
-                               type_product='All Products')
+                               type_product='Top 10 Cheapest Proteins')
 
     @app.route("/whey")
     def whey():
