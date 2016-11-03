@@ -51,6 +51,10 @@ def run_scrapers():
     from supps.tasks.a1_preworkout import scrape_a1_preworkout
     from supps.tasks.a1_vitamin import scrape_a1_vitamin
     from supps.tasks.a1_whey import scrape_a1_whey
+    from supps.tasks.a1_postworkout import scrape_a1_postworkout
+    from supps.tasks.amazon_postworkout import scrape_postworkout_amazon
+    from supps.tasks.bb_postworkout import scrape_bodybuilding_postworkout
+    from supps.tasks.vs_postworkout import scrape_vitamin_shoppe_postworkout
     click.echo('Running Scrapers!')
     scrape_bodybuilding_casein()
     scrape_bodybuilding_whey()
@@ -65,6 +69,12 @@ def run_scrapers():
     scrape_a1_preworkout()
     scrape_a1_vitamin()
     scrape_a1_whey()
+    scrape_a1_postworkout()
+    scrape_postworkout_amazon()
+    scrape_bodybuilding_postworkout()
+    # scrape_vitamin_shoppe_postworkout() #Need to normalize prices here
+
+
     click.echo('Scrapers Finished!')
 
     return
