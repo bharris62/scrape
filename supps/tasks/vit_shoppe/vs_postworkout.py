@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import re
 
 from supps.models import Product
-from ..extensions import db
+from supps.extensions import db
 
 
 def scrape_vitamin_shoppe_postworkout():

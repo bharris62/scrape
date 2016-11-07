@@ -1,6 +1,6 @@
 import os
-from ..extensions import db
-from ..models import Product
+from supps.extensions import db
+from supps.models import Product
 from amazon.api import AmazonAPI
 import re
 

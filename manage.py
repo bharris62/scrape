@@ -38,23 +38,22 @@ def create_db():
 
 @app.cli.command()
 def run_scrapers():
-    from supps.tasks.bb_casein import scrape_bodybuilding_casein
-    from supps.tasks.bb_whey import scrape_bodybuilding_whey
-    from supps.tasks.vs_whey import scrape_vitamin_shoppe_whey
-    from supps.tasks.amazon_whey import scrape_whey_amazon
-    from supps.tasks.bb_preworkout import scrape_bodybuilding_preworkout
-    from supps.tasks.amazon_preworkout import scrape_preworkout_amazon
-    from supps.tasks.vs_preworkout import scrape_vitamin_shoppe_preworkout
-    from supps.tasks.vs_vitamin import scrape_vitamin_shoppe_vitamin
-    from supps.tasks.bb_vitamin import scrape_bodybuilding_vitamin
-    from supps.tasks.amazon_vitamin import scrape_vitamin_amazon
-    from supps.tasks.a1_preworkout import scrape_a1_preworkout
-    from supps.tasks.a1_vitamin import scrape_a1_vitamin
-    from supps.tasks.a1_whey import scrape_a1_whey
-    from supps.tasks.a1_postworkout import scrape_a1_postworkout
-    from supps.tasks.amazon_postworkout import scrape_postworkout_amazon
-    from supps.tasks.bb_postworkout import scrape_bodybuilding_postworkout
-    from supps.tasks.vs_postworkout import scrape_vitamin_shoppe_postworkout
+    from supps.tasks.bodybuilding.bb_casein import scrape_bodybuilding_casein
+    from supps.tasks.bodybuilding.bb_whey import scrape_bodybuilding_whey
+    from supps.tasks.vit_shoppe.vs_whey import scrape_vitamin_shoppe_whey
+    from supps.tasks.amazon.amazon_whey import scrape_whey_amazon
+    from supps.tasks.bodybuilding.bb_preworkout import scrape_bodybuilding_preworkout
+    from supps.tasks.amazon.amazon_preworkout import scrape_preworkout_amazon
+    from supps.tasks.vit_shoppe.vs_preworkout import scrape_vitamin_shoppe_preworkout
+    from supps.tasks.vit_shoppe.vs_vitamin import scrape_vitamin_shoppe_vitamin
+    from supps.tasks.bodybuilding.bb_vitamin import scrape_bodybuilding_vitamin
+    from supps.tasks.amazon.amazon_vitamin import scrape_vitamin_amazon
+    from supps.tasks.a1_supps.a1_preworkout import scrape_a1_preworkout
+    from supps.tasks.a1_supps.a1_vitamin import scrape_a1_vitamin
+    from supps.tasks.a1_supps.a1_whey import scrape_a1_whey
+    from supps.tasks.a1_supps.a1_postworkout import scrape_a1_postworkout
+    from supps.tasks.amazon.amazon_postworkout import scrape_postworkout_amazon
+    from supps.tasks.bodybuilding.bb_postworkout import scrape_bodybuilding_postworkout
     click.echo('Running Scrapers!')
     scrape_bodybuilding_casein()
     scrape_bodybuilding_whey()

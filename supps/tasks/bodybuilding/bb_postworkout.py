@@ -3,12 +3,12 @@ from bs4 import BeautifulSoup
 import re
 
 from supps.models import Product
-from ..extensions import db
+from supps.extensions import db
 
 
-def scrape_bodybuilding_preworkout():
-    url = ['http://www.bodybuilding.com/store/goalpreworkout.htm?pg=1',
-           'http://www.bodybuilding.com/store/goalpreworkout.htm?pg=2']
+def scrape_bodybuilding_postworkout():
+    url = ['http://www.bodybuilding.com/store/recovery.htm',
+           'http://www.bodybuilding.com/store/recovery.htm?pg=2']
 
     rows_logged = 0
     for page in url:
@@ -71,7 +71,7 @@ def scrape_bodybuilding_preworkout():
                 product.product_price_per_serving = 'N/A'
 
             # type of protein
-            prod_type = "Pre-Workout"
+            prod_type = "Post-Workout"
             product.product_type = prod_type
 
             # Product Image

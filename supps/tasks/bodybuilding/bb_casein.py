@@ -2,8 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-from ..extensions import db
-from ..models import Product
+from supps.extensions import db
+from supps.models import Product
 
 
 def scrape_bodybuilding_casein():

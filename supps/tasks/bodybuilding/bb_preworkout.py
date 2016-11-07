@@ -3,12 +3,12 @@ from bs4 import BeautifulSoup
 import re
 
 from supps.models import Product
-from ..extensions import db
+from supps.extensions import db
 
 
-def scrape_bodybuilding_whey():
-    url = ['http://www.bodybuilding.com/store/protein-powder.html',
-           'http://www.bodybuilding.com/store/whey.html?pg=2']
+def scrape_bodybuilding_preworkout():
+    url = ['http://www.bodybuilding.com/store/goalpreworkout.htm?pg=1',
+           'http://www.bodybuilding.com/store/goalpreworkout.htm?pg=2']
 
     rows_logged = 0
     for page in url:
@@ -56,14 +56,14 @@ def scrape_bodybuilding_whey():
                 except:
                     price = 1
 
-                if float(prod_weight) > 11:
-                    pps = 999
+                if float(prod_weight) > 100:
+                    pps = 1
                 else:
 
                     try:
                         pps = format(float(price[1:]) / float(prod_weight), '.2f')
                     except TypeError:
-                        pps = 999
+                        pps = 1
 
                 product.product_price_per_serving = pps
 
@@ -71,7 +71,7 @@ def scrape_bodybuilding_whey():
                 product.product_price_per_serving = 'N/A'
 
             # type of protein
-            prod_type = "Protein"
+            prod_type = "Pre-Workout"
             product.product_type = prod_type
 
             # Product Image

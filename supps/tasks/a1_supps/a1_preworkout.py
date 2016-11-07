@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from supps.models import Product
-from ..extensions import db
+from supps.extensions import db
 
 
 def scrape_a1_preworkout():

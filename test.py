@@ -8,4 +8,3 @@ url = 'http://api.walmartlabs.com/v1/search?apiKey=5rjw69f2qeuvmcyr94tptvsd&lsPu
 
 r = requests.get(url)
 
-json.dump(r)

@@ -3,11 +3,11 @@ from bs4 import BeautifulSoup
 import re
 
 from supps.models import Product
-from ..extensions import db
+from supps.extensions import db
 
 
-def scrape_vitamin_shoppe_preworkout():
-    url = 'http://www.vitaminshoppe.com/c/pre-workout-formulas/N-8f7'
+def scrape_vitamin_shoppe_whey():
+    url = 'http://www.vitaminshoppe.com/c/whey-protein-isolate/N-8eb'
 
     r = requests.get(url)
     soup = BeautifulSoup(r.content, "lxml")
@@ -53,7 +53,7 @@ def scrape_vitamin_shoppe_preworkout():
             prod_weight = float(prod_weight)
             product_price = float(product_price)
 
-            if float(prod_weight) > 100:
+            if float(prod_weight) > 11:
                 pps = 999
             else:
 
@@ -67,8 +67,9 @@ def scrape_vitamin_shoppe_preworkout():
         product.product_price_per_serving = pps
 
         # type of protein
-        prod_type = "Pre-Workout"
+        prod_type = "Protein"
         product.product_type = prod_type
+
 
         db.session.add(product)
         db.session.commit()

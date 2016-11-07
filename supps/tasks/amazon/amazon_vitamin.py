@@ -1,14 +1,14 @@
 import os
-from ..extensions import db
-from ..models import Product
+from supps.extensions import db
+from supps.models import Product
 from amazon.api import AmazonAPI
 import re
 
 
-def scrape_postworkout_amazon():
+def scrape_vitamin_amazon():
     amazon = AmazonAPI('AKIAJ5ZUX3EZNSGONTQQ', 'p0mqBPGq+pD61TI4pILqza4F2o8SskZbLEeg4uZm', 'supps07-20')
 
-    prod = amazon.search(Keywords='Post-Workout-Recovery-Products', SearchIndex='All')
+    prod = amazon.search(Keywords='multivitamin', SearchIndex='All')
     rows_logged = 0
     for i in prod:
         product = Product()
@@ -35,7 +35,7 @@ def scrape_postworkout_amazon():
         website = 'Amazon'
         product.product_dealer = website
 
-        prod_type = 'Post-Workout'
+        prod_type = 'Vitamin'
         product.product_type = prod_type
 
         prod_description = ''
@@ -47,19 +47,18 @@ def scrape_postworkout_amazon():
                 prod_weight = re.findall(r"[-+]?\d*\.\d+|\d+", prod_name)[-1]
             except IndexError:
                 prod_weight = 1
-            if float(prod_weight) > 100:
-                pps = 1
+            if float(prod_weight) > 150:
+                pps = 999
             else:
                 try:
                     pps = format(float(prod_price) / float(prod_weight), '.2f')
                 except TypeError:
-                    pps = 1
+                    pps = 999
 
             product.product_price_per_serving = pps
 
         except ValueError:
             product.product_price_per_serving = pps
-
 
         rows_logged += 1
         db.session.add(product)

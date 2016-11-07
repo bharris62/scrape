@@ -3,11 +3,11 @@ from bs4 import BeautifulSoup
 import re
 
 from supps.models import Product
-from ..extensions import db
+from supps.extensions import db
 
 
-def scrape_vitamin_shoppe_vitamin():
-    url = 'http://www.vitaminshoppe.com/c/men-s-multivitamins/N-893'
+def scrape_vitamin_shoppe_preworkout():
+    url = 'http://www.vitaminshoppe.com/c/pre-workout-formulas/N-8f7'
 
     r = requests.get(url)
     soup = BeautifulSoup(r.content, "lxml")
@@ -67,7 +67,7 @@ def scrape_vitamin_shoppe_vitamin():
         product.product_price_per_serving = pps
 
         # type of protein
-        prod_type = "Vitamin"
+        prod_type = "Pre-Workout"
         product.product_type = prod_type
 
         db.session.add(product)
