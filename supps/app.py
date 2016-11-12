@@ -50,14 +50,14 @@ def create_app(package_name, settings_override=None):
         products = db.session.query(Product).filter(Product.product_type == 'Protein').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('base.html',
                                products=products,
-                               type_product='Whey')
+                               type_product='Find best Prices on Whey')
 
     @app.route("/casein")
     def casein():
         products = db.session.query(Product).order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('base.html',
                                products=products,
-                               type_product='Casein')
+                               type_product='Find best Prices on Casein')
 
     @app.route("/preworkout")
     def preworkout():
@@ -65,21 +65,21 @@ def create_app(package_name, settings_override=None):
         return render_template('base.html',
                                products=products,
                                is_active='active',
-                               type_product='Pre Workout')
+                               type_product='Find best Prices on Pre Workout')
 
     @app.route("/vitamin")
     def vitamin():
         products = db.session.query(Product).filter(Product.product_type == 'Vitamin').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('base.html',
                                products=products,
-                               type_product='Vitamins')
+                               type_product='Find best Prices on Vitamins')
 
     @app.route("/postworkout")
     def postworkout():
         products = db.session.query(Product).filter(Product.product_type == 'Post-Workout').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('base.html',
                                products=products,
-                               type_product='Post Workout')
+                               type_product='Find best Prices on Post Workout')
 
     @app.route("/beta")
     def beta():
