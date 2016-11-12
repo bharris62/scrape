@@ -5,7 +5,7 @@ import re
 from supps.models import Product
 from supps.extensions import db
 
-
+# broken
 def scrape_vitamin_shoppe_postworkout():
     url = 'http://www.vitaminshoppe.com/c/intra-post-workout-recovery/N-8f9'
 
