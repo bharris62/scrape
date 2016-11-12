@@ -50,7 +50,7 @@ def create_app(package_name, settings_override=None):
         products = db.session.query(Product).filter(Product.product_type == 'Protein').order_by(Product.product_price_per_serving).filter(Product.last_update >= (datetime.utcnow() - timedelta(hours=3)))
         return render_template('base.html',
                                products=products,
-                               type_product='Find best Prices on Whey')
+                               type_product='Find best Prices on Protein')
 
     @app.route("/casein")
     def casein():
