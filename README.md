@@ -1,3 +1,5 @@
+# No secret keys in this are still active.  All have been changed to protect integrity of project.
+
 # scrape
 
 The Beginnings of my scrape project to gather up various fitness product
@@ -18,3 +20,4 @@ information and be able to determine the best prices.
 4. Run the web application
 
     `$ python run.py`
+
